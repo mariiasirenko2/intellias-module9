@@ -1,12 +1,12 @@
 package test;
 
 import stack.MyStack;
-import stack.MyStackI;
+import stack.MyCustomStack;
 
 public class StackTester implements Tester {
     @Override
     public void test() {
-        MyStackI<Integer> stack;
+        MyCustomStack<Integer> stack;
         System.out.println("[TEST] Stack:");
 
         System.out.println("1. Test push method: Add 1-6 values with for loop");

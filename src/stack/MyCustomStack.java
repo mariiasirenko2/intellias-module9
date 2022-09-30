@@ -1,6 +1,6 @@
 package stack;
 
-public interface MyStackI<E> {
+public interface MyCustomStack<E> {
     void push(E element);
 
     boolean remove(E element);

@@ -2,7 +2,7 @@ package stack;
 
 import node.Node;
 
-public class MyStack<E> implements MyStackI<E> {
+public class MyStack<E> implements MyCustomStack<E> {
     private Node<E> head;
     private int size;
 
