@@ -2,12 +2,14 @@ package hashmap;
 
 public class MyHashMap<K, V> implements MyMap<K, V> {
     private static final int DEFAULT_INITIAL_CAPACITY = 20;
+    private static final double loadFactor = 0.75;
+
     private Entry<K, V>[] table;
     private int size;
-
+    private int threshold;
 
     public MyHashMap() {
-        table = new Entry[DEFAULT_INITIAL_CAPACITY];
+        clear();
     }
 
     @Override
@@ -21,7 +23,14 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
             putInEntry(entry, key, value);
         }
 
+        if (threshold <= size) {
+            resize();
+        }
         size++;
+    }
+
+    private int getHash(K key) {
+        return key == null ? 0 : key.hashCode() % table.length;
     }
 
     private void putInEntry(Entry<K, V> entry, K key, V value) {
@@ -38,6 +47,29 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
             return;
         }
         entry.setNext(new Entry<>(key, value));
+    }
+
+    private void resize() {
+        Entry<K, V>[] tmpTable = table;
+        table = new Entry[(int) (table.length * 1.5)];
+
+        size = 0;
+        threshold = (int) (2 * table.length * loadFactor);
+
+        for (Entry<K, V> kvEntry : tmpTable) {
+            if (kvEntry != null) {
+
+                Entry<K, V> tmpEntry = kvEntry;
+
+                while (tmpEntry != null) {
+                    put(tmpEntry.getKey(), tmpEntry.getValue());
+                    tmpEntry = tmpEntry.getNext();
+
+                }
+            }
+        }
+
+
     }
 
     @Override
@@ -77,6 +109,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     public void clear() {
         table = new Entry[DEFAULT_INITIAL_CAPACITY];
         size = 0;
+        threshold = (int) (DEFAULT_INITIAL_CAPACITY * loadFactor);
     }
 
     @Override
@@ -117,9 +150,6 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         return stringBuilder.toString();
     }
 
-    private int getHash(K key) {
-        return key == null ? 0 : key.hashCode() % table.length;
-    }
 
     private static class Entry<K, V> {
         private final K key;
