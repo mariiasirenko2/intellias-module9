@@ -5,6 +5,7 @@ import java.util.Collection;
 
 public class MyArrayList<E> implements MyList<E> {
     private final static int INITIAL_CAPACITY = 10;
+
     private Object[] array;
     private int size;
 
