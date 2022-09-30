@@ -3,6 +3,7 @@ package lists;
 import node.Node;
 
 import java.util.Collection;
+import java.util.Objects;
 
 public class MyLinkedList<E> implements MyList<E> {
     private Node<E> head;
@@ -52,7 +53,9 @@ public class MyLinkedList<E> implements MyList<E> {
 
 
     private Node<E> getNode(int index) throws IndexOutOfBoundsException {
-        if (index < 0 || index >= size) {
+        try {
+            Objects.checkIndex(index, size);
+        } catch (IndexOutOfBoundsException e) {
             throw new IndexOutOfBoundsException("Search index: " + index + " LinkedList size: " + size);
         }
 

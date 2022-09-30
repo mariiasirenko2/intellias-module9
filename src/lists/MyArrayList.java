@@ -2,6 +2,7 @@ package lists;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 
 public class MyArrayList<E> implements MyList<E> {
     private final static int INITIAL_CAPACITY = 10;
@@ -42,7 +43,9 @@ public class MyArrayList<E> implements MyList<E> {
 
     @Override
     public void remove(int index) {
-        if (index < 0 || index > array.length) {
+        try {
+            Objects.checkIndex(index, size);
+        } catch (IndexOutOfBoundsException e) {
             throw new IndexOutOfBoundsException("Search index: " + index + " ArrayList size: " + size);
         }
 
@@ -77,7 +80,9 @@ public class MyArrayList<E> implements MyList<E> {
 
     @Override
     public E get(int index) {
-        if (index < 0 || index >= size()) {
+        try {
+            Objects.checkIndex(index, size);
+        } catch (IndexOutOfBoundsException e) {
             throw new IndexOutOfBoundsException("Search index: " + index + " ArrayList size: " + size);
         }
         return (E) array[index];
