@@ -1,14 +1,14 @@
 package test;
 
 import queue.MyQueue;
-import queue.MyQueueI;
+import queue.MyCustomQueue;
 
 import java.util.List;
 
 public class QueueTester implements Tester {
     @Override
     public void test() {
-        MyQueueI<Integer> queue;
+        MyCustomQueue<Integer> queue;
 
         System.out.println("[TEST] Queue:");
         System.out.println("1. Test constructor: Fill with 1-6 values using List");

@@ -4,7 +4,7 @@ import node.Node;
 
 import java.util.Collection;
 
-public class MyQueue<E> implements MyQueueI<E> {
+public class MyQueue<E> implements MyCustomQueue<E> {
     private Node<E> head;
     private Node<E> end;
     private int size;

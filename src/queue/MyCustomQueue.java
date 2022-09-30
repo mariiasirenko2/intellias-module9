@@ -1,6 +1,6 @@
 package queue;
 
-public interface MyQueueI<E> {
+public interface MyCustomQueue<E> {
     void add(E value);
 
     boolean remove(E element);
