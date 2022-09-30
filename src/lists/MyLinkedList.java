@@ -20,17 +20,17 @@ public class MyLinkedList<E> implements MyList<E> {
 
     @Override
     public void add(E element) {
-        Node<E> temp = this.last;
+        Node<E> temp = last;
         Node<E> newNode = new Node<>(temp, element, null);
 
-        this.last = newNode;
+        last = newNode;
 
         if (head == null) {
-            this.head = newNode;
+            head = newNode;
         } else {
             temp.setNext(newNode);
         }
-        this.size++;
+        size++;
     }
 
     @Override

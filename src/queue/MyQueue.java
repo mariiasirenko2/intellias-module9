@@ -20,17 +20,17 @@ public class MyQueue<E> implements MyCustomQueue<E> {
 
     @Override
     public void add(E value) {
-        Node<E> temp = this.end;
+        Node<E> temp = end;
         Node<E> newNode = new Node<>(temp, value, null);
 
-        this.end = newNode;
+        end = newNode;
 
         if (head == null) {
-            this.head = newNode;
+            head = newNode;
         } else {
             temp.setNext(newNode);
         }
-        this.size++;
+        size++;
     }
 
 
