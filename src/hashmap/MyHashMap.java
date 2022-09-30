@@ -118,7 +118,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     }
 
     private int getHash(K key) {
-        return key.hashCode() % table.length;
+        return key == null ? 0 : key.hashCode() % table.length;
     }
 
     private static class Entry<K, V> {
